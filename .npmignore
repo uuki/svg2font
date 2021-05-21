@@ -1,0 +1,10 @@
+example/
+src/
+test/
+.editorconfig
+.nvmrc
+.prettierignore
+.prettierrc
+svg2font.config.js
+tsconfig.json
+yarn.lock

@@ -1,0 +1,57 @@
+{
+  "name": "svg2font",
+  "version": "0.0.1",
+  "description": "Webfont generater based on jaywcjlove/svgtofont",
+  "main": "lib/index.js",
+  "bin": {
+    "svg2font": "./lib/cli.js"
+  },
+  "scripts": {
+    "dev": "run-p dev:*",
+    "dev:index": "ncc run src/index.ts --watch",
+    "dev:cli": "ncc run src/cli.ts --watch",
+    "build": "run-s clean build:tsc build:index",
+    "build:tsc": "node ./node_modules/.bin/tsc",
+    "build:index": "ncc build src/index.ts -o ./lib",
+    "build:cli": "ncc build src/cli.ts -o ./lib",
+    "clean": "rm -rf ./lib",
+    "link": "npm link"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uuki/svg2font.git"
+  },
+  "keywords": [
+    "node",
+    "svg2font",
+    "svg",
+    "webfont",
+    "generator"
+  ],
+  "author": "uuki <uuki.dev@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/cli-color": "^2.0.0",
+    "@types/node": "^15.3.0",
+    "@types/yargs": "^16.0.2",
+    "@vercel/ncc": "^0.28.5",
+    "cross-env": "^7.0.3",
+    "fs-extra": "^10.0.0",
+    "jest": "^23.0.1",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "svgtofont": "^3.10.0"
+  },
+  "engines": {
+    "node": ">= 14.17.0",
+    "yarn": ">= 1.22.10"
+  },
+  "files": [
+    "README.md",
+    "lib/**/*",
+    "package.json",
+    "LICENSE"
+  ]
+}

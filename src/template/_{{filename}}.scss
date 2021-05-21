@@ -1,0 +1,54 @@
+{{cssFontFace}}
+
+[class^="{{prefix}}-"], [class*=" {{prefix}}-"] {
+  &::before {
+    font-family: '{{fontname}}' !important;
+    font-size: {{fontSize}};
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1;
+  }
+}
+
+{{cssString}}
+
+{{cssVars}}
+
+${{fontname}}-icons: (
+{{cssVarArr}}
+);
+
+@mixin {{fontname}}-styles {
+	display: inline-block;
+	font-family: '{{fontname}}';
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-decoration: none;
+  text-transform: none;
+	line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+%{{fontname}}-font {
+	@include {{fontname}}-styles;
+}
+
+@mixin icon($filename, $insert: before, $extend: true) {
+	&:#{$insert} {
+		@if $extend {
+			@extend %{{fontname}}-font;
+		} @else {
+			@include {{fontname}}-styles;
+  		content: "#{map-get(${{fontname}}-icons, $filename)}";
+		}
+
+    @content;
+	}
+}
