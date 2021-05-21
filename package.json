@@ -1,5 +1,5 @@
 {
-  "name": "svg2font",
+  "name": "@uuki/svg2font",
   "version": "0.0.1",
   "description": "Webfont generater based on jaywcjlove/svgtofont",
   "main": "lib/index.js",
