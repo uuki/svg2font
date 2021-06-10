@@ -6,7 +6,7 @@ Webfont generater based on [jaywcjlove/svgtofont](https://github.com/jaywcjlove/
 
 [Install](#install) ·[Command](#using-with-command) · [Usage](#using-with-nodejs) ·[Scss mixin](#using-scss-mixin) ·[Options](#options)
 
-## 3 differences
+## 3 changes
 
 - selectable font type
 - svg2font.config.js
