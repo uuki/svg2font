@@ -1,0 +1,59 @@
+name: Release Package
+
+on:
+  push:
+    branches:
+      - release
+    tags:
+      - "!*"
+
+jobs:
+  release:
+    name: build and release.
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: cache dependencies
+        uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: setup node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14.x'
+          registry-url: 'https://npm.pkg.github.com'
+
+      - name: install
+        run: yarn install
+
+      - name: build
+        run: yarn build
+
+      - name: publish
+        run: |
+          npx can-npm-publish --verbose && npm publish || echo "Does not publish"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: package-version
+        run: node -p -e '`PACKAGE_VERSION=${require("./package.json").version}`' >> $GITHUB_ENV
+
+      - name: create version tag of git
+        uses: pkgdeps/git-tag-action@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_repo: ${{ github.repository }}
+          git_commit_sha: ${{ github.sha }}
+          version: ${{ env.PACKAGE_VERSION }}
+          git_tag_prefix: "v"
