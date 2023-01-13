@@ -6,6 +6,20 @@ Webfont generater based on [jaywcjlove/svgtofont](https://github.com/jaywcjlove/
 
 [Install](#install) ·[Command](#using-with-command) · [Usage](#using-with-nodejs) ·[Scss mixin](#using-scss-mixin) ·[Options](#options)
 
+## Information
+
+This project has been moved [uuki/iconfont-helper](https://github.com/uuki/iconfont-helper).
+
+The issue I wanted to solve in the first place was the handling of icon font styles.
+
+So, while the icon font generator itself is freely selectable by the developer, we wanted to generate a common, generic mixin.
+
+Fortunately, all icon font generators have similar output styles, so we separated the process of adding useful mixins to the css after building.
+
+The process is also based on the original project that I forked.
+
+Thanks for a great project ([jaywcjlove/svgtofont](https://github.com/jaywcjlove/svgtofont))!
+
 ## 3 changes
 
 - selectable font type
